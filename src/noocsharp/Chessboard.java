@@ -22,6 +22,7 @@ public class Chessboard {
     public final int HEIGHT;
 
     public Chessboard (int width, int height) {
+        // should be 8 by 14
         this.WIDTH = width;
         this.HEIGHT = height;
         //this.chessboard = new Piece[this.WIDTH][this.HEIGHT];
@@ -30,29 +31,31 @@ public class Chessboard {
     }
 
     public void reset() {
-        pieces.add(new   Rook(Color.WHITE, new Tuple<>(0, 0)));
-        pieces.add(new Knight(Color.WHITE, new Tuple<>(1, 0)));
-        pieces.add(new Bishop(Color.WHITE, new Tuple<>(2, 0)));
-        pieces.add(new  Queen(Color.WHITE, new Tuple<>(3, 0)));
-        pieces.add(new   King(Color.WHITE, new Tuple<>(4, 0)));
-        pieces.add(new Bishop(Color.WHITE, new Tuple<>(5, 0)));
-        pieces.add(new Knight(Color.WHITE, new Tuple<>(6, 0)));
-        pieces.add(new   Rook(Color.WHITE, new Tuple<>(7, 0)));
+        pieces.add(new   Rook(Color.WHITE, new Tuple<>(0, 3)));
+        pieces.add(new Knight(Color.WHITE, new Tuple<>(1, 3)));
+        pieces.add(new Bishop(Color.WHITE, new Tuple<>(2, 3)));
+        pieces.add(new  Queen(Color.WHITE, new Tuple<>(3, 3)));
+        pieces.add(new   King(Color.WHITE, new Tuple<>(4, 3)));
+        pieces.add(new Bishop(Color.WHITE, new Tuple<>(5, 3)));
+        pieces.add(new Knight(Color.WHITE, new Tuple<>(6, 3)));
+        pieces.add(new   Rook(Color.WHITE, new Tuple<>(7, 3)));
 
-        pieces.add(new   Rook(Color.BLACK, new Tuple<>(0, 7)));
-        pieces.add(new Knight(Color.BLACK, new Tuple<>(1, 7)));
-        pieces.add(new Bishop(Color.BLACK, new Tuple<>(2, 7)));
-        pieces.add(new  Queen(Color.BLACK, new Tuple<>(3, 7)));
-        pieces.add(new   King(Color.BLACK, new Tuple<>(4, 7)));
-        pieces.add(new Bishop(Color.BLACK, new Tuple<>(5, 7)));
-        pieces.add(new Knight(Color.BLACK, new Tuple<>(6, 7)));
-        pieces.add(new   Rook(Color.BLACK, new Tuple<>(7, 7)));
+        pieces.add(new   Rook(Color.BLACK, new Tuple<>(0, 10)));
+        pieces.add(new Knight(Color.BLACK, new Tuple<>(1, 10)));
+        pieces.add(new Bishop(Color.BLACK, new Tuple<>(2, 10)));
+        pieces.add(new  Queen(Color.BLACK, new Tuple<>(3, 10)));
+        pieces.add(new   King(Color.BLACK, new Tuple<>(4, 10)));
+        pieces.add(new Bishop(Color.BLACK, new Tuple<>(5, 10)));
+        pieces.add(new Knight(Color.BLACK, new Tuple<>(6, 10)));
+        pieces.add(new   Rook(Color.BLACK, new Tuple<>(7, 10)));
 
         for (int i = 0; i<8; i++) {
-            pieces.add(new Pawn(Color.WHITE, new Tuple<>(i, 1)));
-            pieces.add(new Pawn(Color.BLACK, new Tuple<>(i, 6)));
-        }
+            pieces.add(new Pawn(Color.WHITE, new Tuple<>(i, 4)));
+            pieces.add(new Pawn(Color.BLACK, new Tuple<>(i, 9)));
 
+            pieces.add(new Nwap(Color.WHITE, new Tuple<>(i, 2)));
+            pieces.add(new Nwap(Color.BLACK, new Tuple<>(i, 11)));
+        }
     }
 
     public void addPiece(Piece p) {
