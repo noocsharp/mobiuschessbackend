@@ -59,19 +59,19 @@ public class Pawn extends Piece {
             }
 
             if (!foundFront) {
-                influence.add(new Tuple(this.pos.x, this.pos.y+orient(1, this.color)));
+                influence.add(new Tuple<>(this.pos.x, (this.pos.y+orient(1, this.color))));
             }
 
             if (foundFrontRight) {
-                influence.add(new Tuple(this.pos.x+1, this.pos.y+orient(1, this.color)));
+                influence.add(new Tuple<>(this.pos.x+1, (this.pos.y+orient(1, this.color))%height));
             }
 
             if (foundFrontLeft) {
-                influence.add(new Tuple(this.pos.x-1, this.pos.y+orient(1, this.color)));
+                influence.add(new Tuple<>(this.pos.x-1, (this.pos.y+orient(1, this.color))%height));
             }
 
             if (!found2Front) {
-                influence.add(new Tuple(this.pos.x, this.pos.y+orient(2, this.color)));
+                influence.add(new Tuple<>(this.pos.x, (this.pos.y+orient(2, this.color))%height));
             }
         }
         return influence;

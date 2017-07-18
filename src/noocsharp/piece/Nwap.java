@@ -34,7 +34,7 @@ public class Nwap extends Piece {
             boolean found2Front = false;
 
             for (Piece p : pieces) {
-                if (p.pos.x == this.pos.x && p.pos.y == this.pos.y + orient(1, this.color)) {
+                if (p.pos.x == this.pos.x && p.pos.y == this.pos.y - orient(1, this.color)) {
                     foundFront = true;
                 }
 
@@ -46,7 +46,7 @@ public class Nwap extends Piece {
                     foundFrontLeft = true;
                 }
 
-                if (p.pos.x == this.pos.x && p.pos.y == this.pos.y + orient(2, this.color)) {
+                if (p.pos.x == this.pos.x && p.pos.y == this.pos.y - orient(2, this.color)) {
                     found2Front = true;
                 }
 
@@ -56,19 +56,19 @@ public class Nwap extends Piece {
             }
 
             if (!foundFront) {
-                influence.add(new Tuple<>(this.pos.x, this.pos.y-orient(1, this.color)));
+                influence.add(new Tuple<>(this.pos.x, (this.pos.y-orient(1, this.color))%height));
             }
 
             if (foundFrontRight) {
-                influence.add(new Tuple<>(this.pos.x+1, this.pos.y-orient(1, this.color)));
+                influence.add(new Tuple<>(this.pos.x+1, (this.pos.y-orient(1, this.color))%height));
             }
 
             if (foundFrontLeft) {
-                influence.add(new Tuple<>(this.pos.x-1, this.pos.y-orient(1, this.color)));
+                influence.add(new Tuple<>(this.pos.x-1, (this.pos.y-orient(1, this.color))%height));
             }
 
             if (!found2Front) {
-                influence.add(new Tuple<>(this.pos.x, this.pos.y-orient(2, this.color)));
+                influence.add(new Tuple<>(this.pos.x, (this.pos.y-orient(2, this.color))%height));
             }
         }
         return influence;
