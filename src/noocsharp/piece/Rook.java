@@ -26,12 +26,12 @@ public class Rook extends Piece{
             boolean doneRight = false;
             for (int i = 1; i <= Utilities.max(new Integer[]{this.pos.x, this.pos.y, width - this.pos.x, height - this.pos.y}); i++) {
                 int ux = this.pos.x;
-                int uy = (((this.pos.y+i)%height)+height)%height;
+                int uy = ((this.pos.y+i)+height)%height;
                 int dx = this.pos.x;
-                int dy = (((this.pos.y-i)%height)+height)%height;
+                int dy = ((this.pos.y-i)+height)%height;
                 int lx = this.pos.x-i;
                 int ly = this.pos.y;
-                int rx = this.pos.x;
+                int rx = this.pos.x+i;
                 int ry = this.pos.y;
 
                 Piece searchUp = Utilities.searchForPos(pieces, new Tuple<>(ux, uy));
@@ -40,41 +40,29 @@ public class Rook extends Piece{
                 Piece searchRight = Utilities.searchForPos(pieces, new Tuple<>(rx, ry));
 
                 if (!doneUp) {
-                    //if (this.pos.y+i >= 0 && this.pos.y+i < height) {
-                        if (searchUp == null) {
-                            influence.add(new Tuple<>(ux, uy));
-                        } else {
-                            if (searchUp.color == this.color) {
-                                doneUp = true;
-                            } else if (searchUp.color == Utilities.oppositeColor(this.color)) {
-                                influence.add(new Tuple<>(ux, uy));
-                                doneUp = true;
-                            }
-                        }
-                        /*
+                    if (searchUp == null) {
+                        influence.add(new Tuple<>(ux, uy));
                     } else {
-                        doneUp = true;
+                        if (searchUp.color == this.color) {
+                            doneUp = true;
+                        } else if (searchUp.color == Utilities.oppositeColor(this.color)) {
+                            influence.add(new Tuple<>(ux, uy));
+                            doneUp = true;
+                        }
                     }
-                    */
                 }
 
                 if (!doneDown) {
-                   // if (this.pos.y-i >= 0 && this.pos.y-i < height) {
-                        if (searchDown == null) {
-                            influence.add(new Tuple<>(dx, dy));
-                        } else {
-                            if (searchDown.color == this.color) {
-                                doneDown = true;
-                            } else if (searchDown.color == Utilities.oppositeColor(this.color)) {
-                                influence.add(new Tuple<>(dx, dy));
-                                doneDown = true;
-                            }
-                        }
-                        /*
+                    if (searchDown == null) {
+                        influence.add(new Tuple<>(dx, dy));
                     } else {
-                        doneDown = true;
+                        if (searchDown.color == this.color) {
+                            doneDown = true;
+                        } else if (searchDown.color == Utilities.oppositeColor(this.color)) {
+                            influence.add(new Tuple<>(dx, dy));
+                            doneDown = true;
+                        }
                     }
-                    */
                 }
 
                 if (!doneRight) {

@@ -60,19 +60,19 @@ public class Pawn extends Piece {
 
             if (!foundFront) {
                 int x = this.pos.x;
-                int y = (((this.pos.y+orient(1, this.color))%height) + height)%height;
+                int y = (this.pos.y+orient(1, this.color) + height)%height;
                 influence.add(new Tuple<>(x, y));
             }
 
             if (foundFrontRight) {
                 int x = this.pos.x;
-                int y = (((this.pos.y+orient(1, this.color))%height) + height)%height;
+                int y = (this.pos.y+orient(1, this.color) + height)%height;
                 influence.add(new Tuple<>(x, y));
             }
 
             if (foundFrontLeft) {
                 int x = this.pos.x;
-                int y = (((this.pos.y+orient(1, this.color))%height) + height)%height;
+                int y = (this.pos.y+orient(1, this.color) + height)%height;
                 influence.add(new Tuple<>(x, y));
             }
 
