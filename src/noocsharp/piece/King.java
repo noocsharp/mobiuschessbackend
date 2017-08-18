@@ -20,7 +20,7 @@ public class King extends Piece {
     }
 
     public HashSet<Tuple<Integer, Integer>> getInfluence(ArrayList<Piece> pieces, int width, int height) {
-        HashSet<Tuple<Integer, Integer>> influence = new HashSet<>();
+        HashSet<Tuple<Integer, Integer>> influence;
 
         Tuple<Integer, Integer> ur = new Tuple<>(this.pos.x+1, this.pos.y+1);
         Tuple<Integer, Integer> u =  new Tuple<>(this.pos.x, this.pos.y+1);

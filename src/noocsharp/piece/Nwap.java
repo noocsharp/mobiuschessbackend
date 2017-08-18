@@ -1,9 +1,7 @@
 package noocsharp.piece;
 
-import noocsharp.Chessboard;
 import noocsharp.utilities.Color;
 import noocsharp.utilities.Tuple;
-import noocsharp.utilities.Utilities;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,11 +10,10 @@ import static noocsharp.utilities.Utilities.oppositeColor;
 import static noocsharp.utilities.Utilities.orient;
 
 /**
- * Created by nihal on 6/30/2017.
+ * Created by nihal on 7/17/2017.
  */
-public class Pawn extends Piece {
-
-    public Pawn(Color color, Tuple<Integer, Integer> pos) {
+public class Nwap extends Piece {
+    public Nwap(Color color, Tuple<Integer, Integer> pos) {
         super(color, pos);
     }
 
@@ -37,7 +34,7 @@ public class Pawn extends Piece {
             boolean found2Front = false;
 
             for (Piece p : pieces) {
-                if (p.pos.x == this.pos.x && p.pos.y == this.pos.y + orient(1, this.color)) {
+                if (p.pos.x == this.pos.x && p.pos.y == this.pos.y - orient(1, this.color)) {
                     foundFront = true;
                 }
 
@@ -49,7 +46,7 @@ public class Pawn extends Piece {
                     foundFrontLeft = true;
                 }
 
-                if (p.pos.x == this.pos.x && p.pos.y == this.pos.y + orient(2, this.color)) {
+                if (p.pos.x == this.pos.x && p.pos.y == this.pos.y - orient(2, this.color)) {
                     found2Front = true;
                 }
 
@@ -60,24 +57,24 @@ public class Pawn extends Piece {
 
             if (!foundFront) {
                 int x = this.pos.x;
-                int y = (this.pos.y+orient(1, this.color) + height)%height;
+                int y = (((this.pos.y-orient(1, this.color))%height) + height)%height;
                 influence.add(new Tuple<>(x, y));
             }
 
             if (foundFrontRight) {
-                int x = this.pos.x;
-                int y = (this.pos.y+orient(1, this.color) + height)%height;
+                int x = this.pos.x+1;
+                int y = (((this.pos.y-orient(1, this.color))%height) + height)%height;
                 influence.add(new Tuple<>(x, y));
             }
 
             if (foundFrontLeft) {
-                int x = this.pos.x;
-                int y = (this.pos.y+orient(1, this.color) + height)%height;
+                int x = this.pos.x-1;
+                int y = (((this.pos.y-orient(1, this.color))%height) + height)%height;
                 influence.add(new Tuple<>(x, y));
             }
 
             if (!found2Front && !hasMoved) {
-                influence.add(new Tuple<>(this.pos.x, (this.pos.y+orient(2, this.color))));
+                influence.add(new Tuple<>(this.pos.x, (this.pos.y-orient(2, this.color))));
             }
         }
         return influence;

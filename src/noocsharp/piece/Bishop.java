@@ -24,21 +24,27 @@ public class Bishop extends Piece{
             boolean doneBottomRight = false;
             boolean doneBottomLeft = false;
 
-            for (int i = 1; i <= Utilities.max(new Integer[]{this.pos.x, this.pos.y, width - this.pos.x, height - this.pos.y}); i++) {
-                Piece searchTopRight = Utilities.searchForPos(pieces, new Tuple<>(this.pos.x+i, this.pos.y+i));
-                Piece searchTopLeft = Utilities.searchForPos(pieces, new Tuple<>(this.pos.x-1, this.pos.y+i));
-                Piece searchBottomRight = Utilities.searchForPos(pieces, new Tuple<>(this.pos.x+i, this.pos.y-1));
-                Piece searchBottomLeft = Utilities.searchForPos(pieces, new Tuple<>(this.pos.x-i, this.pos.y-1));
+            for (int i = 1; i <= 7; i++) {
+                int xP = this.pos.x+i;
+                int xN = this.pos.x-i;
+
+                int yP = (this.pos.y+i+height)%height;
+                int yN = (this.pos.y-i+height)%height;
+
+                Piece searchTopRight = Utilities.searchForPos(pieces, new Tuple<>(xP, yP));
+                Piece searchTopLeft = Utilities.searchForPos(pieces, new Tuple<>(xN, yP));
+                Piece searchBottomRight = Utilities.searchForPos(pieces, new Tuple<>(xP, yN));
+                Piece searchBottomLeft = Utilities.searchForPos(pieces, new Tuple<>(xN, yN));
 
                 if (!doneTopRight) {
-                    if (this.pos.y+i >= 0 && this.pos.y+i < height && this.pos.x+i >= 0 && this.pos.x+i < width) {
+                    if (this.pos.x+i >= 0 && this.pos.x+i < width) {
                         if (searchTopRight == null) {
-                            influence.add(new Tuple<>(this.pos.x+i, this.pos.y+i));
+                            influence.add(new Tuple<>(xP, yP));
                         } else {
                             if (searchTopRight.color == this.color) {
                                 doneTopRight = true;
                             } else if (searchTopRight.color == Utilities.oppositeColor(this.color)) {
-                                influence.add(new Tuple<>(this.pos.x+i, this.pos.y+i));
+                                influence.add(new Tuple<>(xP, yP));
                                 doneTopRight = true;
                             }
                         }
@@ -48,14 +54,14 @@ public class Bishop extends Piece{
                 }
 
                 if (!doneTopLeft) {
-                    if (this.pos.y+i >= 0 && this.pos.y+i < height && this.pos.x-i >= 0 && this.pos.x-i < width) {
+                    if (this.pos.x-i >= 0 && this.pos.x-i < width) {
                         if (searchTopLeft == null) {
-                            influence.add(new Tuple<>(this.pos.x-i, this.pos.y+i));
+                            influence.add(new Tuple<>(xN, yP));
                         } else {
                             if (searchTopLeft.color == this.color) {
                                 doneTopLeft = true;
                             } else if (searchTopLeft.color == Utilities.oppositeColor(this.color)) {
-                                influence.add(new Tuple<>(this.pos.x-i, this.pos.y-i));
+                                influence.add(new Tuple<>(xN, yP));
                                 doneTopLeft = true;
                             }
                         }
@@ -65,14 +71,14 @@ public class Bishop extends Piece{
                 }
 
                 if (!doneBottomRight) {
-                    if (this.pos.y-i >= 0 && this.pos.y-i < height && this.pos.x+i >= 0 && this.pos.x+i < width) {
+                    if (this.pos.x+i >= 0 && this.pos.x+i < width) {
                         if (searchBottomRight == null) {
-                            influence.add(new Tuple<>(this.pos.x+i, this.pos.y-i));
+                            influence.add(new Tuple<>(xP, yN));
                         } else {
                             if (searchBottomRight.color == this.color) {
                                 doneBottomRight = true;
                             } else if (searchBottomRight.color == Utilities.oppositeColor(this.color)) {
-                                influence.add(new Tuple<>(this.pos.x+i, this.pos.y-i));
+                                influence.add(new Tuple<>(xP, yN));
                                 doneBottomRight = true;
                             }
                         }
@@ -82,14 +88,14 @@ public class Bishop extends Piece{
                 }
 
                 if (!doneBottomLeft) {
-                    if (this.pos.y-i >= 0 && this.pos.y-i < height && this.pos.x-i >= 0 && this.pos.x-i < width) {
+                    if (this.pos.x-i >= 0 && this.pos.x-i < width) {
                         if (searchBottomLeft == null) {
-                            influence.add(new Tuple<>(this.pos.x-i, this.pos.y-i));
+                            influence.add(new Tuple<>(xN, yN));
                         } else {
                             if (searchBottomLeft.color == this.color) {
                                 doneBottomLeft = true;
                             } else if (searchBottomLeft.color == Utilities.oppositeColor(this.color)) {
-                                influence.add(new Tuple<>(this.pos.x-i, this.pos.y-i));
+                                influence.add(new Tuple<>(xN, yN));
                                 doneBottomLeft = true;
                             }
                         }

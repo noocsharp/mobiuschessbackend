@@ -1,3 +1,6 @@
 .idea/
 out/
 *.iml
+src/noocsharp/Tests.java
+build/
+.gradle/
