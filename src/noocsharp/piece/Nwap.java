@@ -77,6 +77,10 @@ public class Nwap extends Piece {
                 influence.add(new Tuple<>(this.pos.x, (this.pos.y-orient(2, this.color))));
             }
         }
+        
+        if (!this.hasMoved) {
+            this.hasMoved = true;
+        }
         return influence;
     }
 }

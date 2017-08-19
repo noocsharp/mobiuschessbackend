@@ -101,6 +101,10 @@ public class Rook extends Piece{
             }
         }
 
+        if (!this.hasMoved) {
+            this.hasMoved = true;
+        }
+
         return influence;
     }
 }

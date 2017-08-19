@@ -77,5 +77,9 @@ public class King extends Piece {
         if (!foundCheck) {
             this.inCheck = false;
         }
+
+        if (!this.hasMoved) {
+            this.hasMoved = true;
+        }
     }
 }
